@@ -1,0 +1,11 @@
+{
+  "name": "at-rateLimiter",
+  "version": "1.0.0",
+  "private": true,
+  "dependencies": {
+    "node-fetch": "^2.6.0"
+  },
+  "scripts": {
+    "watch": "node ./client.js"
+  }
+}
