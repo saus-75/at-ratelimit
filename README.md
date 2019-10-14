@@ -2,6 +2,8 @@
 
 ## Instructions
 
+Install go into both server and client and run `yarn install` to install all necessary modules
+
 Start Server:
 
 ```
