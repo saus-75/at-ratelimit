@@ -53,14 +53,12 @@ const rateLimiter = (req, res, next, {rate, timeout}) => {
     initialiseRate(ip);
   }
 
-  // Rate-limiter
-  // check last access is outside of timeout window if so we reset
+  // check last access if outside of timeout window we reset the rate
   if (ratelimit_db[ip].lastAccessed && ratelimit_db[ip].count < rate && !isWithinWindow(ip, timeout)){
-    console.log('IP waited...')
     resetRate(ip);
     return next();
   }
-  // check access count is more than rate if it is we return 429
+  // check access count if more than rate we check if throttle is over, if it is we reset, else we return 429
   if (ratelimit_db[ip].count >= rate){
     const [throttling, difference] = isThrottled(ip, timeout);
     if (throttling){
@@ -72,7 +70,6 @@ const rateLimiter = (req, res, next, {rate, timeout}) => {
     incrementRate(ip);
   }
 
-  console.log(ratelimit_db)
   return next();
 };
 
